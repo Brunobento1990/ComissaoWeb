@@ -36,7 +36,7 @@ docker compose up -d
 
 Aguarde o build e inicialização dos containers. A aplicação estará disponível em:
 
-- **Frontend**: http://localhost
+- **Frontend**: http://localhost:3000
 - **API**: http://localhost:3333
 
 ### Credenciais Padrão
