@@ -100,18 +100,6 @@ export function Login() {
             onClick={form.onSubmit}
           />
         </BoxApp>
-        <BoxApp display="flex" gap="1rem" flexDirection="column">
-          <ButtonApp title="Cadastre-se" variant="outlined" />
-        </BoxApp>
-        <BoxApp
-          display="flex"
-          gap="1rem"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <TextApp titulo="Esqueceu sua senha?" />
-          <ButtonApp title="Clique aqui!" />
-        </BoxApp>
       </form>
     </BoxApp>
   );
