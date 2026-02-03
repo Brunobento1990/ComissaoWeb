@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Make envfile
         run: |
+          cd app/app-comissao-web
           cat > .env
           echo "REACT_APP_API_URL=${{ secrets.URL_API }}" >> .env
           echo "REACT_APP_PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" >> .env
