@@ -4,7 +4,7 @@ Sistema de gerenciamento de comissões de vendedores.
 
 ## ⚠️ OBSERVAÇÃO IMPORTANTE
 
-**As variáveis de ambiente (`.env`) não estão no `.gitignore`!** Tenha cuidado ao fazer commit em repositórios públicos. Este projeto contém arquivos `.env` com credenciais sensíveis que podem estar versionados.
+**Os arquivos `.env` não estão versionados no repositório por questões de segurança.** Você precisará configurar as variáveis de ambiente antes de executar o projeto.
 
 ## 🚀 Tecnologias
 
@@ -28,6 +28,43 @@ Sistema de gerenciamento de comissões de vendedores.
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
+### Configuração Inicial
+
+Antes de executar o projeto, configure as variáveis de ambiente:
+
+#### 1. API (Backend)
+
+```bash
+cd api/api-web-comissao
+cp .env.example .env
+```
+
+Edite o arquivo `.env` e configure as variáveis conforme necessário:
+
+```env
+TZ=UTC
+PORT=3333
+HOST=0.0.0.0
+LOG_LEVEL=info
+APP_KEY=seu_app_key_aqui
+NODE_ENV=development
+DB_HOST=postgres
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_DATABASE=webcomissao
+DB_SSL=false  # true para conexões com SSL (produção)
+```
+
+#### 2. Frontend (se necessário)
+
+```bash
+cd app/app-comissao-web
+cp .env.example .env
+```
+
+Configure as variáveis do frontend conforme os arquivos `.env.example`.
+
 ### Executando
 
 ```bash
@@ -36,7 +73,7 @@ docker compose up -d
 
 Aguarde o build e inicialização dos containers. A aplicação estará disponível em:
 
-- **Frontend**: http://localhost:3000
+- **Frontend**: http://localhost
 - **API**: http://localhost:3333
 
 ### Credenciais Padrão
