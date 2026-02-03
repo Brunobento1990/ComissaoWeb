@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: webcomissao_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: webcomissao
+    ports:
+      - "5455:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/
+    networks:
+      - webcomissao_network
+
+  api:
+    build:
+      context: ./api/api-web-comissao
+      dockerfile: Dockerfile
+    container_name: webcomissao_api
+    restart: always
+    ports:
+      - "3333:3333"
+    environment:
+      TZ: UTC
+      PORT: 3333
+      HOST: 0.0.0.0
+      LOG_LEVEL: info
+      APP_KEY: TxBaMQdgg_yKUdGFa70tyi5jNa446crb
+      NODE_ENV: production
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE: webcomissao
+    depends_on:
+      - postgres
+    networks:
+      - webcomissao_network
+
+  frontend:
+    build:
+      context: ./app/app-comissao-web
+      dockerfile: Dockerfile
+    container_name: webcomissao_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - webcomissao_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  webcomissao_network:
+    driver: bridge

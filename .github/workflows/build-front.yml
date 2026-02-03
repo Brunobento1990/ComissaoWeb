@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Make envfile
+        run: |
+          cat > .env
+          echo "REACT_APP_API_URL=${{ secrets.URL_API }}" >> .env
+          echo "REACT_APP_PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" >> .env
+          echo "$(<.env)"
+      - name: Build
+        run: docker build ./app/app-comissao-web -t brunobentocaina/web-comissao-front
+      - name: Push
+        run: |
+          docker login -u brunobentocaina -p ${{ secrets.DOCKER_HUB_KEY }}
+          docker push brunobentocaina/web-comissao-front

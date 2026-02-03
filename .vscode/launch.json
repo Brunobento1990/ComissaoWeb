@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug AdonisJS",
+      "runtimeExecutable": "node",
+      "program": "${workspaceFolder}/api/api-web-comissao/ace.js",
+      "args": ["serve"],
+      "cwd": "${workspaceFolder}/api/api-web-comissao",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug AdonisJS (Watch Mode)",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--inspect-brk=0"],
+      "program": "${workspaceFolder}/api/api-web-comissao/ace.js",
+      "args": ["serve", "--watch"],
+      "cwd": "${workspaceFolder}/api/api-web-comissao",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "autoAttachChildProcesses": false
+    }
+  ]
+}
